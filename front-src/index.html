@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="container h-100">
+                <div class="row h-100 justify-content-center align-items-center">
+                    <form class="col-12">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Server ID</label>
+                            <input type="text" class="form-control" id="sid" placeholder="357272833824522250">
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput2">Bot Token</label>
+                            <input type="text" class="form-control" id="token" placeholder="NDI5ODQ4MTgxNTE4MzY4Nzk4.DjzNlw.X4nDt8QLXSnuMtk3l1AqKBZ7jeU">
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput2">Bot Prefix</label>
+                            <input type="text" class="form-control" id="prefix" placeholder="!">
+                        </div>
+                        <button id="confirmation" class="req btn preventDefault" type="button">Go</button>
+
+                </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</body>
+<footer>
+<script>
+   function hello(){
+    var xhttp = new XMLHttpRequest();
+       console.log("Token: " + token.value + "\nServer ID: " + sid.value);
+       xhttp.open("POST", "http://localhost:8080/s?t=" + token.value + "&sid=" + sid.value + "&bp=" + prefix.value, true)
+       xhttp.send()
+       console.log('done')
+   }
+
+   
+    let dataObj = {
+        "token": document.getElementById('token').value,
+        "server": document.getElementById('sid').value,
+        "prefix": document.getElementById('prefix').value
+    } 
+    document.getElementById("confirmation").addEventListener("click", sendData(dataObj))
+    </script>
+
+<script src="ipc.js"></script>
+</footer>
+
+</html>
