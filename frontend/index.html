@@ -36,23 +36,6 @@
     </div>
 </body>
 <footer>
-<script>
-   function hello(){
-    var xhttp = new XMLHttpRequest();
-       console.log("Token: " + token.value + "\nServer ID: " + sid.value);
-       xhttp.open("POST", "http://localhost:8080/s?t=" + token.value + "&sid=" + sid.value + "&bp=" + prefix.value, true)
-       xhttp.send()
-       console.log('done')
-   }
-
-   
-    let dataObj = {
-        "token": document.getElementById('token').value,
-        "server": document.getElementById('sid').value,
-        "prefix": document.getElementById('prefix').value
-    } 
-    document.getElementById("confirmation").addEventListener("click", sendData(dataObj))
-    </script>
 
 <script src="ipc.js"></script>
 </footer>

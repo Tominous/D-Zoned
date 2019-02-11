@@ -2,7 +2,7 @@
 var inherits = require('inherits');
 var Entity = require('./../engine/entity.js');
 var TextBlotter = require('./../common/textblotter.js');
-var miscConfig = JSON.parse(require('fs').readFileSync('./dzone-src/misc-config.json')) || {};
+var miscConfig = JSON.parse(require('fs').readFileSync('./dzone/misc-config.json')) || {};
 
 var textboxConfig = miscConfig.textbox || {};
 var TEXTBOX_MAX_WIDTH = textboxConfig.maxWidth || 96;

@@ -1,58 +1,29 @@
 {
   "name": "dzoned",
-  "productName": "D-Zoned",
   "version": "1.0.0",
   "description": "Generate ambient life simulations driven by the user activity within a Discord server with a single click",
-  "main": "main.js",
+  "main": "index.js",
   "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish",
+    "start": "electron .",
     "lint": "eslint src --color",
+    "package": "electron-packager . D-Zoned --platform win32 --arch all --out dist/ --icon ./assets/dlogo.ico --overwrite",
     "build": "webpack --config webpack/webpack.config.js --env.production --progress",
-    "eris-build": "browserify dzone-src/web/main.js -t brfs -g uglifyify -o dzone-src/web/static/bundle.js",
+    "eris-build": "browserify dzone/web/main.js -t brfs -g uglifyify -o dzone/web/static/bundle.js",
     "dev": "webpack-dev-server --config webpack/webpack.config.js --env.development"
   },
-  "keywords": [],
+  "keywords": [
+    "dzone",
+    "Axel Greavette",
+    "Axel G",
+    "discord",
+    "electron"
+  ],
   "author": "Axel Greavette",
   "license": "MIT",
-  "config": {
-    "win": {
-      "icon": "build/icon.ico"
-    },
-    "forge": {
-      "make_targets": {
-        "win32": [
-          "squirrel"
-        ],
-        "darwin": [
-          "zip"
-        ],
-        "linux": [
-          "deb",
-          "rpm"
-        ]
-      },
-      "electronPackagerConfig": {
-        "packageManager": "npm"
-      },
-      "electronWinstallerConfig": {
-        "name": "D-Zoned"
-      },
-      "electronInstallerDebian": {},
-      "electronInstallerRedhat": {},
-      "github_repository": {
-        "owner": "",
-        "name": ""
-      },
-      "windowsStoreConfig": {
-        "packageName": "",
-        "name": "D-Zoned"
-      }
-    }
-  },
   "dependencies": {
+    "babel-core": "6.26.0",
+    "babel-loader": "7.1.2",
+    "babel-preset-env": "1.6.1",
     "brfs": "^1.6.1",
     "browser-storage": "0.0.2",
     "browserify": "latest",
@@ -60,38 +31,30 @@
     "dateformat": "^1.0.11",
     "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
     "dotenv": "^6.0.0",
-    "electron-compile": "^6.4.3",
-    "electron-squirrel-startup": "^1.0.0",
+    "electron-window-state": "^5.0.3",
+    "eris": "^0.9.0",
     "eslint": "^5.2.0",
     "eslint-config-airbnb": "^17.0.0",
     "express": "^4.16.3",
-    "find-process": "^1.1.1",
+    "html-webpack-plugin": "2.30.1",
     "inherits": "^2.0.1",
     "ip": "^1.1.5",
-    "kill-by-port": "0.0.1",
-    "kill-port": "^1.3.1",
-    "uglifyify": "^3.0.1",
-    "watchify": "latest",
-    "websocket-stream": "^2.1.0",
-    "ws": "^0.8.0",
-    "babel-core": "6.26.0",
-    "babel-loader": "7.1.2",
-    "babel-preset-env": "1.6.1",
-    "html-webpack-plugin": "2.30.1",
     "localforage": "1.5.2",
     "pixi.js": "4.6.0",
     "raf": "3.4.0",
+    "uglifyify": "^3.0.1",
+    "watchify": "latest",
     "webpack": "3.8.1",
+    "websocket-stream": "^2.1.0",
     "worker-loader": "0.7.1",
-    "eris": "^0.9.0"
+    "ws": "^0.8.0"
   },
   "devDependencies": {
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "electron": "^3.0.10",
-    "electron-forge": "^5.2.2",
-    "electron-prebuilt-compile": "2.0.6",
+    "electron-packager": "^13.0.1",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.10.0"
