@@ -1,0 +1,7 @@
+{
+    "name": "dzoned",
+    "dest": "dist/installers/x64",
+    "icon": "assets/dlogo.ico",
+    "version": "1.0.0",
+    "noMsi": true
+}

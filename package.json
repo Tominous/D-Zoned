@@ -1,12 +1,20 @@
 {
-  "name": "dzoned",
-  "version": "1.0.0",
+  "name": "d-zoned",
+  "version": "1.0.1",
   "description": "Generate ambient life simulations driven by the user activity within a Discord server with a single click",
   "main": "index.js",
+  "productName": "D-Zoned",
+  "productVersion": "1.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/axelgreavette/D-Zoned"
+  },
   "scripts": {
     "start": "electron .",
     "lint": "eslint src --color",
     "package": "electron-packager . D-Zoned --platform win32 --arch all --out dist/ --icon ./assets/dlogo.ico --overwrite",
+    "build-ia32": "electron-installer-windows --src dist/dzonedwin32ia32 --config config-ia32.json",
+    "build-x64": "electron-installer-windows --src dist/dzonedwin32x64 --config config-x64.json",
     "build": "webpack --config webpack/webpack.config.js --env.production --progress",
     "eris-build": "browserify dzone/web/main.js -t brfs -g uglifyify -o dzone/web/static/bundle.js",
     "dev": "webpack-dev-server --config webpack/webpack.config.js --env.development"
@@ -54,6 +62,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "electron": "^3.0.10",
+    "electron-installer-windows": "^1.1.0",
     "electron-packager": "^13.0.1",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
