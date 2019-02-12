@@ -127,8 +127,8 @@ async function createWindow(){
                 {
                     label: "Exit",
                     async click () {
-                        app.exit()
                         await Dzone.kill()
+                        app.exit()
                         return true
                     },
                     accelerator: "CmdOrCtrl+Shift+W"
@@ -155,7 +155,7 @@ async function createWindow(){
                 {
                     label: "Github",
                     click () {
-                        shell.openExternal("https://github.com/axelgreavette/d-zoned")
+                        shell.openExternal("https://github.com/Chrominix/D-Zoned")
                     },
                     icon: nativeImage.createFromPath(path.join(__dirname, "/assets/GithubLogo.png")).resize({ width: 18, height: 18, quality: 'best' })
                 },
