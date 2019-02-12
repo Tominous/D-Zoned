@@ -1,6 +1,6 @@
 {
   "name": "d-zoned",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Generate ambient life simulations driven by the user activity within a Discord server with a single click",
   "main": "index.js",
   "productName": "D-Zoned",
