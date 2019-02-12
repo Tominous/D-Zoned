@@ -16,7 +16,7 @@ let tray
 let menu
 
 async function createWindow(){
-    let mainWindowState = windowStateKeeper({
+    const mainWindowState = windowStateKeeper({
         defaultWidth: 1000,
         defaultHeigt: 800
     })
