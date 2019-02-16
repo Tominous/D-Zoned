@@ -1,15 +1,15 @@
 const { BrowserWindow, app, ipcMain, nativeImage, dialog, Menu, shell, Tray } = require("electron")
 const windowStateKeeper = require('electron-window-state');
 
-const path = require("path")
-const expressA = require('express')
-const express = expressA()
-const fs = require("fs")
+const express = require('express')
+const Express = express()
 
-const dz = require("./classes/DZone")
+const dz = require("./assets/classes/DZone")
 const Dzone = new dz()
-const loader = require("./classes/Loader.js")
+const loader = require("./assets/classes/Loader.js")
 const Loader = new loader()
+const path = require("path")
+const fs = require("fs")
 
 let win
 let tray
@@ -26,15 +26,15 @@ async function createWindow(){
         y: mainWindowState.y,
         width: mainWindowState.width,
         height: mainWindowState.height,
-        icon: nativeImage.createFromPath(path.join(__dirname, "/assets/dcube.png")).resize({ width: 18, height: 18, quality: 'best' }),
+        icon: nativeImage.createFromPath(path.join(__dirname, "assets/images/dcube.png")).resize({ width: 18, height: 18, quality: 'best' }),
         backgroundColor: '#717bb9'
     })
 
     mainWindowState.manage(win)
 
-    win.loadFile(path.join(__dirname, "frontend/index.html"))
+    win.loadFile(path.join(__dirname, "assets/front-end/initial-screen.html"))
 
-    win.setIcon(nativeImage.createFromPath(path.join(__dirname, `assets/dcube.png`)))
+    win.setIcon(nativeImage.createFromPath(path.join(__dirname, `assets/images/dcube.png`)))
     win.setTitle("D-Zone")
     //win.webContents.openDevTools()
     win.on("close", async () => {
@@ -64,7 +64,6 @@ async function createWindow(){
     });
 
     menu = Menu.buildFromTemplate([
-        
         {
             label: "File",
             submenu: [
@@ -157,14 +156,14 @@ async function createWindow(){
                     click () {
                         shell.openExternal("https://github.com/Chrominix/D-Zoned")
                     },
-                    icon: nativeImage.createFromPath(path.join(__dirname, "/assets/GithubLogo.png")).resize({ width: 18, height: 18, quality: 'best' })
+                    icon: nativeImage.createFromPath(path.join(__dirname, "/assets/images/GithubLogo.png")).resize({ width: 18, height: 18, quality: 'best' })
                 },
                 {
                     label: "Discord",
                     click () {
                         shell.openExternal("https://discord.gg/B97B5a9")
                     },
-                    icon: nativeImage.createFromPath(path.join(__dirname, "/assets/DiscordLogo.png")).resize({ width: 18, height: 18, quality: 'best' })
+                    icon: nativeImage.createFromPath(path.join(__dirname, "/assets/images/DiscordLogo.png")).resize({ width: 18, height: 18, quality: 'best' })
                 }
             ]
         }
@@ -176,7 +175,7 @@ async function createWindow(){
 app.on("ready", async function () {
 
     createWindow()
-    tray = new Tray(nativeImage.createFromPath(path.join(__dirname, "/assets/dcube.png")).resize({ width: 18, height: 18, quality: 'best' }))
+    tray = new Tray(nativeImage.createFromPath(path.join(__dirname, "/assets/images/dcube.png")).resize({ width: 18, height: 18, quality: 'best' }))
     const contextMenu = Menu.buildFromTemplate(
         [
             {
@@ -184,14 +183,14 @@ app.on("ready", async function () {
                 click () {
                     shell.openExternal("https://github.com/axelgreavette/d-zoned")
                 },
-                icon: nativeImage.createFromPath(path.join(__dirname, "/assets/GithubLogo.png")).resize({ width: 18, height: 18, quality: 'best' })
+                icon: nativeImage.createFromPath(path.join(__dirname, "/assets/images/GithubLogo.png")).resize({ width: 18, height: 18, quality: 'best' })
             },
             {
                 label: "Discord",
                 click () {
                     shell.openExternal("https://discord.gg/B97B5a9")
                 },
-                icon: nativeImage.createFromPath(path.join(__dirname, "/assets/DiscordLogo.png")).resize({ width: 18, height: 18, quality: 'best' })
+                icon: nativeImage.createFromPath(path.join(__dirname, "/assets/images/DiscordLogo.png")).resize({ width: 18, height: 18, quality: 'best' })
             },
             {
                 type: "separator"
@@ -227,20 +226,18 @@ app.on("exit", async function () {
     return true;
 })
 
-app.on('window-all-closed', app.quit);
+app.on('window-all-closed', app.exit);
 
 ipcMain.on("asynchronous-message", async (e, data) => {
-    //console.log(data)
-
     Dzone.createTokenEnv(data.token)
     Dzone.createDiscordConfig(data.prefix ? data.prefix : null, data.server, 8080)
     Dzone.createSocketConfig("8080")
     await Dzone.buildFiles()
     await Dzone.serveFiles()   
 
-    win.loadFile(path.join(__dirname, "frontend/dzone.html"))
+    win.loadFile(path.join(__dirname, "assets/front-end/d-zone.html"))
 })
 
-express.use('/', expressA.static('dzone/web'))
+Express.use('/', express.static('assets/d-zone/web'))
 
-express.listen(8080, () => console.log("Listening to port 8080"))
+Express.listen(8080, () => console.log("Listening to port 8080"))

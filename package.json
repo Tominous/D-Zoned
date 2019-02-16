@@ -12,15 +12,13 @@
   "scripts": {
     "start": "electron .",
     "lint": "eslint src --color",
-    "package": "electron-packager . D-Zoned --platform win32 --arch all --out dist/ --icon ./assets/build/dlogo.ico --overwrite",
-    "build-ia32": "electron-installer-windows --src dist/dzonedwin32ia32 --config assets/build/config-ia32.json",
-    "build-x64": "electron-installer-windows --src dist/dzonedwin32x64 --config assets/build/config-x64.json",
+    "package": "electron-packager . D-Zoned --platform all --arch all --out dist/ --icon ./assets/build/dlogo.ico --overwrite",
     "build": "webpack --config webpack/webpack.config.js --env.production --progress",
-    "eris-build": "browserify dzone/web/main.js -t brfs -g uglifyify -o dzone/web/static/bundle.js",
+    "eris-build": "browserify assets/d-zone/web/main.js -t brfs -g uglifyify -o assets/d-zone/web/static/bundle.js",
     "dev": "webpack-dev-server --config webpack/webpack.config.js --env.development"
   },
   "keywords": [
-    "dzone",
+    "d-zone",
     "Axel Greavette",
     "Axel G",
     "discord",
@@ -29,9 +27,6 @@
   "author": "Axel Greavette",
   "license": "MIT",
   "dependencies": {
-    "babel-core": "6.26.0",
-    "babel-loader": "7.1.2",
-    "babel-preset-env": "1.6.1",
     "brfs": "^1.6.1",
     "browser-storage": "0.0.2",
     "browserify": "latest",
@@ -58,11 +53,7 @@
     "ws": "^0.8.0"
   },
   "devDependencies": {
-    "babel-plugin-transform-async-to-generator": "^6.24.1",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
     "electron": "^3.0.10",
-    "electron-installer-windows": "^1.1.0",
     "electron-packager": "^13.0.1",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",

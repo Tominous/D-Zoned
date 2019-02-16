@@ -34,7 +34,7 @@ class DZone {
     }
 
     createTokenEnv (token) {
-        fs.writeFileSync('./dzone/.env', `token=${token}`, function (err) {
+        fs.writeFileSync('./assets/d-zone/.env', `token=${token}`, function (err) {
             if (err) throw err
             else return "Created the env file with the token"
         })
@@ -47,7 +47,7 @@ class DZone {
         this.basicDiscordConfig.infoCommand = `${prefix ? prefix : "!"}d-zone`
         this.basicDiscordConfig.servers[0].id = server
 
-        fs.writeFileSync('./dzone/discord-config.json', JSON.stringify(this.basicDiscordConfig), function (err) {
+        fs.writeFileSync('./assets/d-zone/discord-config.json', JSON.stringify(this.basicDiscordConfig), function (err) {
             if (err) throw err;
             else return "Created the discord-config file with the token and server"
         })
@@ -55,7 +55,7 @@ class DZone {
 
     createSocketConfig (port) {
         this.basicSocketConfig.port = port ? port : "8080"
-        fs.writeFileSync('./dzone/socket-config.json', JSON.stringify(this.basicSocketConfig), function (err) {
+        fs.writeFileSync('./assets/d-zone/socket-config.json', JSON.stringify(this.basicSocketConfig), function (err) {
             if (err) throw err;
             else return "Created the socket-config file with the token"
         })
@@ -73,7 +73,7 @@ class DZone {
 
     async serveFiles (end = false) {
         console.log("Starting server")
-        await this.terminal.stdin.write("node dzone/index.js \n", err => {
+        await this.terminal.stdin.write("node ./assets/d-zone/index.js \n", err => {
             if (err) throw err
         })
         if (end === true) this.terminal.stdin.end()
