@@ -50,7 +50,7 @@
     "webpack": "3.8.1",
     "websocket-stream": "^2.1.0",
     "worker-loader": "0.7.1",
-    "ws": "^0.8.0"
+    "ws": "^7.2.1"
   },
   "devDependencies": {
     "electron": "^3.0.10",
