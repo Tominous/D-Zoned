@@ -36,7 +36,7 @@ async function createWindow(){
 
     win.setIcon(nativeImage.createFromPath(path.join(__dirname, `assets/images/dcube.png`)))
     win.setTitle("D-Zone")
-    //win.webContents.openDevTools()
+    win.webContents.openDevTools()
     win.on("close", async () => {
         const response = await dialog.showMessageBox(
             {
